@@ -1,0 +1,2 @@
+{"ts": 1787675531.335826, "iso": "2026-08-25T16:32:11", "step": "1_verify_target", "target": "b"}
+{"ts": 1787675531.3366477, "iso": "2026-08-25T16:32:11", "step": "1_verify_target_failed", "error": "mocked: target khong bao gio ready"}
