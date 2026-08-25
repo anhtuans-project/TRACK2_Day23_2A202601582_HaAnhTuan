@@ -38,3 +38,7 @@
 {"seq": 37, "ts": 1787677649.5231543, "status": 200, "ok": true, "served_by": "b", "edge_region": "b", "doc_ingested_at": 1787677025.5757759, "error": null, "latency_ms": 877.2}
 {"seq": 38, "ts": 1787677650.4005191, "status": 200, "ok": true, "served_by": "b", "edge_region": "b", "doc_ingested_at": 1787677025.5757759, "error": null, "latency_ms": 818.8}
 {"seq": 39, "ts": 1787677651.219448, "status": 200, "ok": true, "served_by": "b", "edge_region": "b", "doc_ingested_at": 1787677025.5757759, "error": null, "latency_ms": 964.0}
+{"seq": 40, "ts": 1787677652.1834955, "status": 200, "ok": true, "served_by": "b", "edge_region": "b", "doc_ingested_at": 1787677025.5757759, "error": null, "latency_ms": 525.0}
+{"seq": 41, "ts": 1787677652.7085447, "status": 200, "ok": true, "served_by": "b", "edge_region": "b", "doc_ingested_at": 1787677025.5757759, "error": null, "latency_ms": 250.4}
+{"seq": 42, "ts": 1787677653.208895, "status": 200, "ok": true, "served_by": "b", "edge_region": "b", "doc_ingested_at": 1787677025.5757759, "error": null, "latency_ms": 279.0}
+{"seq": 43, "ts": 1787677653.7092793, "status": 200, "ok": true, "served_by": "b", "edge_region": "b", "doc_ingested_at": 1787677025.5757759, "error": null, "latency_ms": 270.9}
