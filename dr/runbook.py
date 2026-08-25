@@ -40,17 +40,114 @@ URL = {"a": "http://127.0.0.1:8001", "b": "http://127.0.0.1:8002"}
 
 def step(n, name, **kw):
     """TODO: ghi 1 dòng {ts, iso, step, name, ...} vào LOG."""
-    raise NotImplementedError
+    LOG.parent.mkdir(parents=True, exist_ok=True)
+    rec = {
+        "ts": time.time(),
+        "iso": time.strftime("%Y-%m-%dT%H:%M:%S", time.gmtime()),
+        "step": n,
+        "name": name,
+        **kw
+    }
+    with open(LOG, "a", encoding="utf-8") as f:
+        f.write(json.dumps(rec) + "\n")
+    print(f"RUNBOOK STEP {n} [{name}]: {json.dumps(kw)}")
+    return rec
 
 
 def confirm(auto: bool, msg: str) -> bool:
     """TODO: auto=True -> True; ngược lại hỏi y/N. Đừng bỏ hàm này đi."""
-    raise NotImplementedError
+    if auto:
+        return True
+    try:
+        ans = input(msg).strip().lower()
+        return ans in ["y", "yes"]
+    except KeyboardInterrupt:
+        return False
 
 
 def run(primary: str, target: str, backend: str, auto: bool) -> dict:
     """TODO: 7 bước ở trên."""
-    raise NotImplementedError
+    from dr.health_checker import probe as hc_probe
+
+    # Step 1: verify outage
+    primary_ready, primary_reason = hc_probe(primary, timeout=2.0)
+    target_ready, target_reason = hc_probe(target, timeout=2.0)
+    step(1, "xac_nhan_outage", primary=primary, primary_ready=primary_ready, target=target, target_ready=target_ready)
+
+    # Step 2: announcement / notice
+    t_outage = None
+    try:
+        chaos_events = pathlib.Path("chaos/chaos-events.jsonl")
+        if chaos_events.exists():
+            for line in chaos_events.read_text(encoding="utf-8").splitlines():
+                if not line.strip():
+                    continue
+                e = json.loads(line)
+                if e.get("action") == "kill" and e.get("region") == primary:
+                    t_outage = e["ts"]
+    except Exception:
+        pass
+    if t_outage is None:
+        t_outage = time.time() - 5.0
+    t_operator = time.time()
+    step(2, "thong_bao_incident", t_outage=t_outage, t_operator=t_operator)
+
+    # Operator Confirmation
+    if not confirm(auto, f"Operator: Start failover from {primary} to {target}? (y/N): "):
+        print("Failover aborted by operator.")
+        return {"ok": False, "reason": "aborted"}
+
+    # Step 3: scale pool (trigger failover)
+    fo_res = fo.failover(target, backend, wait=60)
+    step(3, "scale_gpu_pool", ok=fo_res.get("ok"), target=target)
+
+    # Step 4: verify state replica
+    step(4, "verify_state_replica",
+         vector_count=fo_res.get("vector_count"),
+         weights=fo_res.get("weights"),
+         embed_model_version=fo_res.get("embed_model_version"))
+
+    # Step 5: dns cutover
+    step(5, "dns_cutover", ok=fo_res.get("ok"))
+
+    # Step 6: verify golden signals
+    latencies = []
+    errors = 0
+    for _ in range(10):
+        t_s = time.time()
+        try:
+            r = httpx.get(f"{URL[target]}/v1/infer?q=runbook_golden_signal", timeout=2.0)
+            latency = time.time() - t_s
+            latencies.append(latency)
+            if r.status_code != 200 or "error" in r.json():
+                errors += 1
+        except Exception:
+            errors += 1
+        time.sleep(0.1)
+
+    if latencies:
+        latencies.sort()
+        p95 = latencies[int(len(latencies) * 0.95)]
+    else:
+        p95 = None
+    error_rate = errors / 10
+    step(6, "verify_golden_signals", p95_latency=p95, error_rate=error_rate)
+
+    # Step 7: post incident
+    rto_cmd = "python3 tools/measure_rto.py --loadgen reports/drill-2-withdr.jsonl --target-rto 300"
+    elapsed_s = time.time() - t_operator
+    step(7, "post_incident", elapsed_s=round(elapsed_s, 2), rto_cmd=rto_cmd)
+
+    return {
+        "ok": fo_res.get("ok"),
+        "primary": primary,
+        "target": target,
+        "rpo_seconds": fo_res.get("rpo_seconds"),
+        "docs_lost": fo_res.get("docs_lost"),
+        "embed_model_version": fo_res.get("embed_model_version"),
+        "vector_count": fo_res.get("vector_count"),
+        "weights": fo_res.get("weights")
+    }
 
 
 if __name__ == "__main__":

@@ -43,7 +43,7 @@ def test_health_checker_can_threshold_lien_tiep(monkeypatch):
     out = pathlib.Path("reports/_test-health.jsonl")
     out.unlink(missing_ok=True)
     hc.run(interval=0.01, timeout=0.01, threshold=3, duration=0.2, out=out)
-    ev = [json.loads(l) for l in out.read_text().splitlines()]
+    ev = [json.loads(l) for l in out.read_text(encoding="utf-8").splitlines()]
     changes = [e for e in ev if e.get("event") == "state_change"]
     assert changes, "khong ghi state_change nao"
     assert changes[0]["to"] == "UNHEALTHY"
@@ -61,7 +61,7 @@ def test_failover_khong_cutover_khi_target_chua_ready(monkeypatch):
     """
     fo = pytest.importorskip("dr.failover")
     active = pathlib.Path("edge/active_region")
-    before = active.read_text() if active.exists() else "a"
+    before = active.read_text(encoding="utf-8") if active.exists() else "a"
     monkeypatch.setattr(fo.snapshot, "get", lambda *a, **k: {
         "snapshot_at": time.time(), "latest_doc_ts": time.time(),
         "embed_model_version": "test"})
@@ -76,5 +76,5 @@ def test_failover_khong_cutover_khi_target_chua_ready(monkeypatch):
         monkeypatch.setattr(fo.httpx, "get", never_ready)
     r = fo.failover("b", "fs", wait=1.0)
     assert not r.get("ok")
-    assert (active.read_text() if active.exists() else "a") == before, \
+    assert (active.read_text(encoding="utf-8") if active.exists() else "a") == before, \
         "da doi active_region du target chua ready"
