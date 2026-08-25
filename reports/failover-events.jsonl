@@ -13,3 +13,8 @@
 {"ts": 1787677280.0804148, "iso": "2026-08-25T17:01:20", "step": "3_scale_pool", "target": "b"}
 {"ts": 1787677280.0810084, "iso": "2026-08-25T17:01:20", "step": "4_wait_ready", "target": "b"}
 {"ts": 1787677280.4296553, "iso": "2026-08-25T17:01:20", "step": "5_dns_cutover", "target": "b"}
+{"ts": 1787677348.3039246, "iso": "2026-08-25T17:02:28", "step": "1_verify_target", "target": "b"}
+{"ts": 1787677348.6221187, "iso": "2026-08-25T17:02:28", "step": "2_restore_snapshot", "rpo_seconds": 4.0, "docs_lost": 6, "embed_model_version": "embed-model=vi-e5-base@v3"}
+{"ts": 1787677348.6224742, "iso": "2026-08-25T17:02:28", "step": "3_scale_pool", "target": "b"}
+{"ts": 1787677348.6231625, "iso": "2026-08-25T17:02:28", "step": "4_wait_ready", "target": "b"}
+{"ts": 1787677348.9904263, "iso": "2026-08-25T17:02:28", "step": "5_dns_cutover", "target": "b"}

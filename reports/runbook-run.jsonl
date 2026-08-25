@@ -19,3 +19,10 @@
 {"ts": 1787677280.731172, "iso": "2026-08-25T17:01:20", "step": 5, "name": "dns_cutover", "ok": true}
 {"ts": 1787677285.394237, "iso": "2026-08-25T17:01:25", "step": 6, "name": "verify_golden_signals", "p95_latency": 0.5246725082397461, "error_rate": 0.0}
 {"ts": 1787677285.3953164, "iso": "2026-08-25T17:01:25", "step": 7, "name": "post_incident", "elapsed_s": 5.68, "rto_cmd": "python3 tools/measure_rto.py --loadgen reports/drill-2-withdr.jsonl --target-rto 300"}
+{"ts": 1787677348.2912674, "iso": "2026-08-25T17:02:28", "step": 1, "name": "xac_nhan_outage", "primary": "a", "primary_ready": false, "target": "b", "target_ready": true}
+{"ts": 1787677348.3031797, "iso": "2026-08-25T17:02:28", "step": 2, "name": "thong_bao_incident", "t_outage": 1787677342.3101513, "t_operator": 1787677348.302927}
+{"ts": 1787677349.2812846, "iso": "2026-08-25T17:02:29", "step": 3, "name": "scale_gpu_pool", "ok": true, "target": "b"}
+{"ts": 1787677349.2816834, "iso": "2026-08-25T17:02:29", "step": 4, "name": "verify_state_replica", "vector_count": 403, "weights": true, "embed_model_version": "embed-model=vi-e5-base@v3"}
+{"ts": 1787677349.2819493, "iso": "2026-08-25T17:02:29", "step": 5, "name": "dns_cutover", "ok": true}
+{"ts": 1787677355.070758, "iso": "2026-08-25T17:02:35", "step": 6, "name": "verify_golden_signals", "p95_latency": 0.6033973693847656, "error_rate": 0.0}
+{"ts": 1787677355.0714202, "iso": "2026-08-25T17:02:35", "step": 7, "name": "post_incident", "elapsed_s": 6.77, "rto_cmd": "python3 tools/measure_rto.py --loadgen reports/drill-2-withdr.jsonl --target-rto 300"}
