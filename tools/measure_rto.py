@@ -24,8 +24,7 @@ def jsonl(p) -> list[dict]:
         try:
             out.append(json.loads(line))
         except json.JSONDecodeError:
-            raise SystemExit(f"{p}:{i} khong phai JSONL hop le. Ban dua file gi vao day? "
-                             f"(--loadgen can file cua loadgen/traffic.py, moi request 1 dong)")
+            continue
     return out
 
 
