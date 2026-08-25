@@ -5,3 +5,4 @@
 {"event": "state_change", "ts": 1787677481.815723, "region": "a", "to": "UNHEALTHY", "reason": "ReadTimeout", "interval_s": 5.0, "threshold": 3, "consecutive_fails": 3}
 {"event": "state_change", "ts": 1787677626.4589438, "region": "a", "to": "UNHEALTHY", "reason": "ReadTimeout", "interval_s": 5.0, "threshold": 3, "consecutive_fails": 3}
 {"event": "state_change", "ts": 1787677962.7522812, "region": "a", "to": "UNHEALTHY", "reason": "ConnectTimeout", "interval_s": 5.0, "threshold": 3, "consecutive_fails": 3}
+{"event": "state_change", "ts": 1787679118.3861158, "region": "a", "to": "UNHEALTHY", "reason": "ReadTimeout", "interval_s": 5.0, "threshold": 3, "consecutive_fails": 3}
