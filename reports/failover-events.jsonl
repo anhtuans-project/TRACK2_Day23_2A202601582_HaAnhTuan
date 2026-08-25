@@ -1,2 +1,7 @@
 {"ts": 1787675531.335826, "iso": "2026-08-25T16:32:11", "step": "1_verify_target", "target": "b"}
 {"ts": 1787675531.3366477, "iso": "2026-08-25T16:32:11", "step": "1_verify_target_failed", "error": "mocked: target khong bao gio ready"}
+{"ts": 1787677048.5100062, "iso": "2026-08-25T16:57:28", "step": "1_verify_target", "target": "b"}
+{"ts": 1787677048.8468304, "iso": "2026-08-25T16:57:28", "step": "2_restore_snapshot", "rpo_seconds": 22.0, "docs_lost": 11, "embed_model_version": "embed-model=vi-e5-base@v3"}
+{"ts": 1787677048.847193, "iso": "2026-08-25T16:57:28", "step": "3_scale_pool", "target": "b"}
+{"ts": 1787677048.8478346, "iso": "2026-08-25T16:57:28", "step": "4_wait_ready", "target": "b"}
+{"ts": 1787677055.8105862, "iso": "2026-08-25T16:57:35", "step": "5_dns_cutover", "target": "b"}

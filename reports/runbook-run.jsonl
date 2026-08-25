@@ -1,0 +1,7 @@
+{"ts": 1787677048.497567, "iso": "2026-08-25T16:57:28", "step": 1, "name": "xac_nhan_outage", "primary": "a", "primary_ready": false, "target": "b", "target_ready": false}
+{"ts": 1787677048.5095496, "iso": "2026-08-25T16:57:28", "step": 2, "name": "thong_bao_incident", "t_outage": 1787677043.5068948, "t_operator": 1787677048.509334}
+{"ts": 1787677056.22811, "iso": "2026-08-25T16:57:36", "step": 3, "name": "scale_gpu_pool", "ok": true, "target": "b"}
+{"ts": 1787677056.2285275, "iso": "2026-08-25T16:57:36", "step": 4, "name": "verify_state_replica", "vector_count": 201, "weights": true, "embed_model_version": "embed-model=vi-e5-base@v3"}
+{"ts": 1787677056.2288136, "iso": "2026-08-25T16:57:36", "step": 5, "name": "dns_cutover", "ok": true}
+{"ts": 1787677060.5925317, "iso": "2026-08-25T16:57:40", "step": 6, "name": "verify_golden_signals", "p95_latency": 0.41951727867126465, "error_rate": 0.0}
+{"ts": 1787677060.5937653, "iso": "2026-08-25T16:57:40", "step": 7, "name": "post_incident", "elapsed_s": 12.08, "rto_cmd": "python3 tools/measure_rto.py --loadgen reports/drill-2-withdr.jsonl --target-rto 300"}
