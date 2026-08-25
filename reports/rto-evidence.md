@@ -17,24 +17,24 @@ Con số không có evidence = trượt, bất kể các phần khác.
 
 | Mốc | +giây từ t_outage | Cách đo | Evidence |
 |---|---|---|---|
-| t_outage (mốc 0) | 0 | `action:kill` | `chaos/chaos-events.jsonl:last` |
-| User thấy lỗi đầu tiên | +2.0s | dòng `ok:false` đầu | `reports/drill-2-withdr.jsonl:1` |
-| Health check phát hiện | +4.9s | `to:UNHEALTHY, region:a` | `reports/health-events.jsonl:6` |
-| Snapshot restore xong | +5.3s | `step:2_restore_snapshot` | `reports/failover-events.jsonl:27` |
-| Region phụ ready | +5.3s | `step:4_wait_ready` | `reports/failover-events.jsonl:29` |
-| DNS cutover | +5.9s | `step:5_dns_cutover` | `reports/failover-events.jsonl:30` |
-| **RTO đo được** | +9.1s | dòng `ok:true` đầu sau lỗi | `reports/drill-2-withdr.jsonl:9` |
+| t_outage (mốc 0) | 0 | `action:kill` | `chaos/chaos-events.jsonl:18` |
+| User thấy lỗi đầu tiên | +2.2s | dòng `ok:false` đầu | `reports/drill-2-withdr.jsonl:32` |
+| Health check phát hiện | +16.6s | `to:UNHEALTHY, region:a` | `reports/health-events.jsonl:8` |
+| Snapshot restore xong | +26.5s | `step:2_restore_snapshot` | `reports/failover-events.jsonl:45` |
+| Region phụ ready | +26.5s | `step:4_wait_ready` | `reports/failover-events.jsonl:47` |
+| DNS cutover | +26.8s | `step:5_dns_cutover` | `reports/failover-events.jsonl:48` |
+| **RTO đo được** | +28.2s | dòng `ok:true` đầu sau lỗi | `reports/drill-2-withdr.jsonl:43` |
 
 | Chỉ số | Đo được | Mục tiêu (slide §1) | Verdict |
 |---|---|---|---|
-| RTO — Inference API | 9.1s | 300s (5 phút) | PASS |
-| RPO — Vector DB | 4.0s / 2 doc | 300s (5 phút) | PASS |
+| RTO — Inference API | 28.2s | 300s (5 phút) | PASS |
+| RPO — Vector DB | 2.0s / 1 doc | 300s (5 phút) | PASS |
 
 ## 3. RTO của tôi gồm những gì (bắt buộc — đây là phần chấm điểm hiểu bài)
 
 | Thành phần | Giây | Nó đến từ đâu | Giảm được bằng cách nào |
 |---|---|---|---|
-| Health-check detect floor | 15.0s | `interval_s × threshold` trong `reports/health-events.jsonl:6` | Giảm interval hoặc threshold |
-| Snapshot restore | 0.4s | 2_restore → 3_scale | Sử dụng snapshot nhanh hơn hoặc incremental restore |
+| Health-check detect floor | 15.0s | `interval_s × threshold` trong `reports/health-events.jsonl:8` | Giảm interval hoặc threshold |
+| Snapshot restore | 0.1s | 2_restore → 3_scale | Sử dụng snapshot nhanh hơn hoặc incremental restore |
 | GPU pool warm-up | 0.0s | `waited_s` ở `4_wait_ready` | Giữ pool ở trạng thái warm thay vì cold |
-| DNS/LB TTL cache | 3.7s | t_recovered − t_cutover | Giảm TTL của DNS/LB |
+| DNS/LB TTL cache | 1.4s | t_recovered − t_cutover | Giảm TTL của DNS/LB |
