@@ -39,3 +39,5 @@
 {"snapshot_at": 1787677609.0491428, "source_region": "a", "latest_doc_ts": 1787677609.04207, "embed_model_version": "embed-model=vi-e5-base@v3", "every_s": 10.0}
 {"snapshot_at": 1787677619.0487123, "source_region": "a", "latest_doc_ts": 1787677619.0436666, "embed_model_version": "embed-model=vi-e5-base@v3", "every_s": 10.0}
 {"snapshot_at": 1787677629.0480938, "source_region": "a", "latest_doc_ts": 1787677629.0449195, "embed_model_version": "embed-model=vi-e5-base@v3", "every_s": 10.0}
+{"snapshot_at": 1787677639.0472383, "source_region": "a", "latest_doc_ts": 1787677639.0461795, "embed_model_version": "embed-model=vi-e5-base@v3", "every_s": 10.0}
+{"snapshot_at": 1787677649.0464182, "source_region": "a", "latest_doc_ts": 1787677649.0476186, "embed_model_version": "embed-model=vi-e5-base@v3", "every_s": 10.0}
