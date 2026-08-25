@@ -64,11 +64,21 @@ def is_alive(region: str, timeout=1.5) -> bool:
 
 
 def pid_of(region: str) -> int | None:
-    f = PID_DIR / f"region-{region}.pid"
-    if not f.exists():
-        return None
+    if os.name == "nt":
+        port = 8001 if region == "a" else 8002
+        try:
+            import subprocess
+            out = subprocess.check_output(
+                ["powershell", "-Command", f"Get-NetTCPConnection -LocalPort {port} | Select-Object -ExpandProperty OwningProcess"],
+                text=True
+            ).strip()
+            return int(out)
+        except Exception:
+            return None
     pid = int(f.read_text().strip())
     try:
+        if os.name == "nt":
+            return pid
         os.kill(pid, 0)
         return pid
     except OSError:
@@ -107,7 +117,7 @@ def kill(region: str, mode: str, backend: str, force_both: bool, mock: bool):
                 else:
                     raise SystemExit(f"khong the mo process {pid} de suspend")
             else:
-                os.kill(pid, 9)
+                subprocess.run(["taskkill", "/F", "/PID", str(pid)])
         else:
             os.kill(pid, signal.SIGSTOP if mode == "netblock" else signal.SIGKILL)
     else:
