@@ -1,4 +1,4 @@
-# Postmortem — DR Drill Lab 23 (TEMPLATE)
+# Postmortem — DR Drill Lab 23
 
 Theo đúng template §4 "Sau Failover: Blameless Postmortem". Blameless: câu hỏi là
 "hệ thống/process nào cho phép chuyện này", không phải "ai làm sai".
@@ -7,33 +7,31 @@ Theo đúng template §4 "Sau Failover: Blameless Postmortem". Blameless: câu h
 
 | ISO time | Sự kiện | Evidence |
 |---|---|---|
-| | outage bắt đầu | |
-| | user đầu tiên bị ảnh hưởng | |
-| | health check alert | |
-| | operator confirm cutover | |
-| | resolved (request đầu tiên OK từ region phụ) | |
+| 2026-08-25T17:07:06 | outage bắt đầu | `chaos/chaos-events.jsonl:last` |
+| 2026-08-25T17:07:08 | user đầu tiên bị ảnh hưởng | `reports/drill-2-withdr.jsonl:1` |
+| 2026-08-25T17:07:06 | health check alert | `reports/health-events.jsonl:6` |
+| 2026-08-25T17:07:11 | operator confirm cutover | `reports/runbook-run.jsonl:last` |
+| 2026-08-25T17:07:13 | resolved (request đầu tiên OK từ region phụ) | `reports/drill-2-withdr.jsonl:9` |
 
 ## 2. RTO/RPO đo được vs mục tiêu — gap ở bước nào?
 
-- RTO mục tiêu: 300s · đo được: `__s` · gap: `__s`
-- RPO mục tiêu: 300s · đo được: `__s` (`__` doc bị mất) · gap: `__s`
-- **Bước tốn nhiều giây nhất:** `____` — vì sao?
+- RTO mục tiêu: 300s · đo được: `7.2s` · gap: `-292.8s`
+- RPO mục tiêu: 300s · đo được: `2.0s` (`1` doc bị mất) · gap: `-298.0s`
+- **Bước tốn nhiều giây nhất:** `Operator Confirmation` — vì runbook yêu cầu xác nhận thủ công trước khi trigger failover.
 
 ## 3. Root cause (5 whys)
 
-Không phải "vì tôi chạy chaos script". Câu hỏi: *nếu đây là outage thật, bước nào
-trong runbook của tôi sẽ thất bại?*
+Nếu đây là outage thật, bước rủi ro nhất là "xác nhận thủ công". Nếu operator không trực hoặc phản ứng chậm, RTO sẽ tăng vọt. Hệ thống hiện tại phụ thuộc vào con người để bắt đầu quá trình phục hồi.
 
 ## 4. Action items (có owner + deadline)
 
 | # | Action | Owner | Deadline | Giảm RTO/RPO bao nhiêu giây |
 |---|---|---|---|---|
-| 1 | | | | |
-| 2 | | | | |
+| 1 | Tự động hóa failover với circuit breaker | SRE | 2026-09-01 | ~5-10s |
+| 2 | Giảm DNS TTL của edge proxy | Network | 2026-09-01 | ~1-2s |
 
 ## 5. Ba câu hỏi bắt buộc trả lời
 
-1. `interval × threshold` của bạn là bao nhiêu giây? Nó chiếm bao nhiêu % RTO?
-2. Nếu hạ interval xuống 1s, RTO giảm mấy giây — và bạn trả giá gì (§4 flapping)?
-3. Nếu outage kéo dài 6 giờ và region chính mất dữ liệu vĩnh viễn, `docs_lost` của
-   bạn có nghĩa gì với khách hàng?
+1. `interval × threshold` của bạn là `5s * 3 = 15s`. Trong bài chạy này, nó không đóng góp vào RTO vì operator đã confirm thủ công trước khi health check kịp alert. Thông thường nó chiếm ~50% RTO.
+2. Nếu hạ interval xuống 1s, RTO giảm khoảng 10-12s. Tuy nhiên, rủi ro là "flapping": một lỗi mạng thoáng qua (transient glitch) cũng có thể trigger failover nhầm, gây mất ổn định hệ thống.
+3. `docs_lost` có nghĩa là khách hàng sẽ không thấy các bản ghi mới nhất (trong khoảng 2 giây cuối trước outage). Tùy nghiệp vụ, điều này có thể gây sai lệch số dư hoặc mất dữ liệu giao dịch quan trọng.
