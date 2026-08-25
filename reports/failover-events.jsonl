@@ -35,3 +35,9 @@
 {"ts": 1787677968.702374, "iso": "2026-08-25T17:12:48", "step": "3_scale_pool", "target": "b"}
 {"ts": 1787677968.7030265, "iso": "2026-08-25T17:12:48", "step": "4_wait_ready", "target": "b"}
 {"ts": 1787677969.0191576, "iso": "2026-08-25T17:12:49", "step": "5_dns_cutover", "target": "b"}
+{"ts": 1787678059.7811985, "iso": "2026-08-25T17:14:19", "step": "1_verify_target", "target": "b"}
+{"ts": 1787678059.7831218, "iso": "2026-08-25T17:14:19", "step": "1_verify_target_failed", "error": "mocked: target khong bao gio ready"}
+{"ts": 1787678083.363128, "iso": "2026-08-25T17:14:43", "step": "1_verify_target", "target": "b"}
+{"ts": 1787678083.3640604, "iso": "2026-08-25T17:14:43", "step": "1_verify_target_failed", "error": "mocked: target khong bao gio ready"}
+{"ts": 1787678110.9208868, "iso": "2026-08-25T17:15:10", "step": "1_verify_target", "target": "b"}
+{"ts": 1787678110.9217274, "iso": "2026-08-25T17:15:10", "step": "1_verify_target_failed", "error": "mocked: target khong bao gio ready"}
