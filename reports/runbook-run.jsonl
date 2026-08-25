@@ -26,3 +26,17 @@
 {"ts": 1787677349.2819493, "iso": "2026-08-25T17:02:29", "step": 5, "name": "dns_cutover", "ok": true}
 {"ts": 1787677355.070758, "iso": "2026-08-25T17:02:35", "step": 6, "name": "verify_golden_signals", "p95_latency": 0.6033973693847656, "error_rate": 0.0}
 {"ts": 1787677355.0714202, "iso": "2026-08-25T17:02:35", "step": 7, "name": "post_incident", "elapsed_s": 6.77, "rto_cmd": "python3 tools/measure_rto.py --loadgen reports/drill-2-withdr.jsonl --target-rto 300"}
+{"ts": 1787677487.3484106, "iso": "2026-08-25T17:04:47", "step": 1, "name": "xac_nhan_outage", "primary": "a", "primary_ready": false, "target": "b", "target_ready": true}
+{"ts": 1787677487.359413, "iso": "2026-08-25T17:04:47", "step": 2, "name": "thong_bao_incident", "t_outage": 1787677481.9990091, "t_operator": 1787677487.3592358}
+{"ts": 1787677488.2645137, "iso": "2026-08-25T17:04:48", "step": 3, "name": "scale_gpu_pool", "ok": true, "target": "b"}
+{"ts": 1787677488.2650301, "iso": "2026-08-25T17:04:48", "step": 4, "name": "verify_state_replica", "vector_count": 466, "weights": true, "embed_model_version": "embed-model=vi-e5-base@v3"}
+{"ts": 1787677488.2654734, "iso": "2026-08-25T17:04:48", "step": 5, "name": "dns_cutover", "ok": true}
+{"ts": 1787677493.0337415, "iso": "2026-08-25T17:04:53", "step": 6, "name": "verify_golden_signals", "p95_latency": 0.5673997402191162, "error_rate": 0.0}
+{"ts": 1787677493.035899, "iso": "2026-08-25T17:04:53", "step": 7, "name": "post_incident", "elapsed_s": 5.68, "rto_cmd": "python3 tools/measure_rto.py --loadgen reports/drill-2-withdr.jsonl --target-rto 300"}
+{"ts": 1787677631.3632529, "iso": "2026-08-25T17:07:11", "step": 1, "name": "xac_nhan_outage", "primary": "a", "primary_ready": false, "target": "b", "target_ready": true}
+{"ts": 1787677631.372132, "iso": "2026-08-25T17:07:11", "step": 2, "name": "thong_bao_incident", "t_outage": 1787677626.587814, "t_operator": 1787677631.371919}
+{"ts": 1787677632.4769144, "iso": "2026-08-25T17:07:12", "step": 3, "name": "scale_gpu_pool", "ok": true, "target": "b"}
+{"ts": 1787677632.4773095, "iso": "2026-08-25T17:07:12", "step": 4, "name": "verify_state_replica", "vector_count": 496, "weights": true, "embed_model_version": "embed-model=vi-e5-base@v3"}
+{"ts": 1787677632.47762, "iso": "2026-08-25T17:07:12", "step": 5, "name": "dns_cutover", "ok": true}
+{"ts": 1787677638.6945772, "iso": "2026-08-25T17:07:18", "step": 6, "name": "verify_golden_signals", "p95_latency": 1.0185961723327637, "error_rate": 0.0}
+{"ts": 1787677638.6951618, "iso": "2026-08-25T17:07:18", "step": 7, "name": "post_incident", "elapsed_s": 7.32, "rto_cmd": "python3 tools/measure_rto.py --loadgen reports/drill-2-withdr.jsonl --target-rto 300"}

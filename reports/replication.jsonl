@@ -29,3 +29,13 @@
 {"snapshot_at": 1787677376.0269575, "source_region": "a", "latest_doc_ts": 1787677374.5670326, "embed_model_version": "embed-model=vi-e5-base@v3", "every_s": 30.0}
 {"snapshot_at": 1787677384.549338, "source_region": "a", "latest_doc_ts": 1787677384.043111, "embed_model_version": "embed-model=vi-e5-base@v3", "every_s": 10.0}
 {"snapshot_at": 1787677406.0240636, "source_region": "a", "latest_doc_ts": 1787677404.047177, "embed_model_version": "embed-model=vi-e5-base@v3", "every_s": 30.0}
+{"snapshot_at": 1787677464.346735, "source_region": "a", "latest_doc_ts": 1787677464.333715, "embed_model_version": "embed-model=vi-e5-base@v3", "every_s": 10.0}
+{"snapshot_at": 1787677474.3460906, "source_region": "a", "latest_doc_ts": 1787677474.3358524, "embed_model_version": "embed-model=vi-e5-base@v3", "every_s": 10.0}
+{"snapshot_at": 1787677484.3456268, "source_region": "a", "latest_doc_ts": 1787677484.337408, "embed_model_version": "embed-model=vi-e5-base@v3", "every_s": 10.0}
+{"snapshot_at": 1787677494.344921, "source_region": "a", "latest_doc_ts": 1787677494.3393717, "embed_model_version": "embed-model=vi-e5-base@v3", "every_s": 10.0}
+{"snapshot_at": 1787677504.3444145, "source_region": "a", "latest_doc_ts": 1787677504.3402536, "embed_model_version": "embed-model=vi-e5-base@v3", "every_s": 10.0}
+{"snapshot_at": 1787677514.3436835, "source_region": "a", "latest_doc_ts": 1787677514.3409684, "embed_model_version": "embed-model=vi-e5-base@v3", "every_s": 10.0}
+{"snapshot_at": 1787677524.3434653, "source_region": "a", "latest_doc_ts": 1787677522.341356, "embed_model_version": "embed-model=vi-e5-base@v3", "every_s": 10.0}
+{"snapshot_at": 1787677609.0491428, "source_region": "a", "latest_doc_ts": 1787677609.04207, "embed_model_version": "embed-model=vi-e5-base@v3", "every_s": 10.0}
+{"snapshot_at": 1787677619.0487123, "source_region": "a", "latest_doc_ts": 1787677619.0436666, "embed_model_version": "embed-model=vi-e5-base@v3", "every_s": 10.0}
+{"snapshot_at": 1787677629.0480938, "source_region": "a", "latest_doc_ts": 1787677629.0449195, "embed_model_version": "embed-model=vi-e5-base@v3", "every_s": 10.0}
