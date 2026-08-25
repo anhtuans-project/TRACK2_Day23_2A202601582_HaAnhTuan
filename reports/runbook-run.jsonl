@@ -5,3 +5,17 @@
 {"ts": 1787677158.0368292, "iso": "2026-08-25T16:59:18", "step": 5, "name": "dns_cutover", "ok": true}
 {"ts": 1787677165.4988832, "iso": "2026-08-25T16:59:25", "step": 6, "name": "verify_golden_signals", "p95_latency": 1.020900011062622, "error_rate": 0.0}
 {"ts": 1787677165.499704, "iso": "2026-08-25T16:59:25", "step": 7, "name": "post_incident", "elapsed_s": 8.5, "rto_cmd": "python3 tools/measure_rto.py --loadgen reports/drill-2-withdr.jsonl --target-rto 300"}
+{"ts": 1787677225.7893243, "iso": "2026-08-25T17:00:25", "step": 1, "name": "xac_nhan_outage", "primary": "a", "primary_ready": false, "target": "b", "target_ready": true}
+{"ts": 1787677225.8001063, "iso": "2026-08-25T17:00:25", "step": 2, "name": "thong_bao_incident", "t_outage": 1787677220.086384, "t_operator": 1787677225.7999241}
+{"ts": 1787677226.7539427, "iso": "2026-08-25T17:00:26", "step": 3, "name": "scale_gpu_pool", "ok": true, "target": "b"}
+{"ts": 1787677226.7543397, "iso": "2026-08-25T17:00:26", "step": 4, "name": "verify_state_replica", "vector_count": 286, "weights": true, "embed_model_version": "embed-model=vi-e5-base@v3"}
+{"ts": 1787677226.7546287, "iso": "2026-08-25T17:00:26", "step": 5, "name": "dns_cutover", "ok": true}
+{"ts": 1787677231.3019822, "iso": "2026-08-25T17:00:31", "step": 6, "name": "verify_golden_signals", "p95_latency": 0.47031664848327637, "error_rate": 0.0}
+{"ts": 1787677231.302958, "iso": "2026-08-25T17:00:31", "step": 7, "name": "post_incident", "elapsed_s": 5.5, "rto_cmd": "python3 tools/measure_rto.py --loadgen reports/drill-2-withdr.jsonl --target-rto 300"}
+{"ts": 1787677279.6986525, "iso": "2026-08-25T17:01:19", "step": 1, "name": "xac_nhan_outage", "primary": "a", "primary_ready": false, "target": "b", "target_ready": true}
+{"ts": 1787677279.7126954, "iso": "2026-08-25T17:01:19", "step": 2, "name": "thong_bao_incident", "t_outage": 1787677273.8666995, "t_operator": 1787677279.7123888}
+{"ts": 1787677280.7304344, "iso": "2026-08-25T17:01:20", "step": 3, "name": "scale_gpu_pool", "ok": true, "target": "b"}
+{"ts": 1787677280.7308211, "iso": "2026-08-25T17:01:20", "step": 4, "name": "verify_state_replica", "vector_count": 309, "weights": true, "embed_model_version": "embed-model=vi-e5-base@v3"}
+{"ts": 1787677280.731172, "iso": "2026-08-25T17:01:20", "step": 5, "name": "dns_cutover", "ok": true}
+{"ts": 1787677285.394237, "iso": "2026-08-25T17:01:25", "step": 6, "name": "verify_golden_signals", "p95_latency": 0.5246725082397461, "error_rate": 0.0}
+{"ts": 1787677285.3953164, "iso": "2026-08-25T17:01:25", "step": 7, "name": "post_incident", "elapsed_s": 5.68, "rto_cmd": "python3 tools/measure_rto.py --loadgen reports/drill-2-withdr.jsonl --target-rto 300"}
